@@ -1,13 +1,27 @@
-import React from 'react';
-import {View, Button} from 'react-native';
+import React, {useEffect} from 'react';
+import {connect} from 'react-redux';
 
-function Categories({navigation}) {
+import {Button} from 'react-native';
+import {Wrapper, Text} from './style';
+
+import {getAllCategories} from '../../redux/Categories/action';
+
+function Categories({navigation, dispatch, categories}) {
+  useEffect(() => {
+    dispatch(getAllCategories());
+  }, [dispatch]);
+
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      {/* <Text>Categories</Text> */}
+    <Wrapper>
+      {categories.allCategories.drinks &&
+        categories.allCategories.drinks.map((value, index) => (
+          <Text key={index}>{value.strCategory}</Text>
+        ))}
+
       <Button onPress={() => navigation.navigate('Bebidas')} title="Bebidas" />
-    </View>
+    </Wrapper>
   );
 }
 
-export default Categories;
+const mapStateToProps = (state) => ({categories: state.Categories});
+export default connect(mapStateToProps)(Categories);
