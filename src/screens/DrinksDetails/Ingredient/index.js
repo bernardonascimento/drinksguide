@@ -7,7 +7,7 @@ function Ingredient({ingredient, measure}) {
     ingredient,
   )}-small.png`;
 
-  console.log(imageUri);
+  // console.log(imageUri);
 
   return (
     <Wrapper>
