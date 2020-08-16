@@ -1,21 +1,21 @@
 import {createStore, applyMiddleware, combineReducers} from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
-import Categories from '../redux/Categories/reducer';
-// import Drinks from '../redux/Drinks/reducer';
+import categories from '../redux/Categories/reducer';
+import drinks from '../redux/Drinks/reducer';
 
-import CategoriesSaga from '../redux/Categories/saga';
-// import DrinksSaga from '../redux/Categories/saga';
+import CategorySaga from '../redux/Categories/saga';
+import DrinkSaga from '../redux/Drinks/saga';
 
 const reducers = combineReducers({
-  Categories,
-  // Drinks,
+  categories,
+  drinks,
 });
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(reducers, applyMiddleware(sagaMiddleware));
 
-sagaMiddleware.run(CategoriesSaga);
-// sagaMiddleware.run(DrinksSaga);
+sagaMiddleware.run(CategorySaga);
+sagaMiddleware.run(DrinkSaga);
 
 export default store;

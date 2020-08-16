@@ -1,6 +1,6 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-import {StatusBar, View} from 'react-native';
+import {StatusBar} from 'react-native';
 
 import {ThemeProvider} from 'styled-components';
 
@@ -16,16 +16,6 @@ import store from './redux';
 
 const Stack = createStackNavigator();
 
-const options = {
-  headerStyle: {
-    backgroundColor: dark.secondary,
-  },
-  headerTitleStyle: {
-    alignSelf: 'auto',
-  },
-  headerTintColor: '#fff',
-};
-
 export default function App() {
   return (
     <Provider store={store}>
@@ -40,28 +30,29 @@ export default function App() {
             }}
             headerMode="screen">
             <Stack.Screen
-              name="Categorias"
+              name="Drinks Guide"
               component={Categories}
               options={{
                 headerStyle: {
                   backgroundColor: dark.secondary,
                 },
-                // headerTitleStyle: {
-                //   alignSelf: 'center',
-                // },
                 headerTintColor: '#fff',
+                headerTitleStyle: {
+                  fontSize: 30,
+                },
               }}
             />
             <Stack.Screen
-              name="Bebidas"
+              name="Drinks"
               component={Drinks}
               options={{
                 headerStyle: {
                   backgroundColor: dark.secondary,
                 },
-                // headerTitleStyle: {alignSelf: 'center'},
                 headerTintColor: '#fff',
-                // headerRight: <View />,
+                headerTitleStyle: {
+                  fontSize: 25,
+                },
               }}
             />
           </Stack.Navigator>

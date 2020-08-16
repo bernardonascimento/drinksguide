@@ -1,13 +1,11 @@
 export default {
   primary: '#000',
   secondary: '#15181C',
-  search: '#202327',
+  graydark: '#202327',
   white: '#D9D9D9',
   gray: '#7A7A7A',
   outline: '#2F3336',
-  retweet: '#00C06B',
-  like: '#E8265E',
-  twitter: '#33A1F2',
-  twitterdarkhover: '#011017',
-  twitterlighthover: '#2C8ED6',
+  green: '#00C06B',
+  red: '#E8265E',
+  blue: '#33A1F2',
 };

@@ -1,27 +1,45 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 
-import {Button} from 'react-native';
-import {Wrapper, Text} from './style';
+import {ScrollView} from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
+import {RectButton} from 'react-native-gesture-handler';
+
+import {Container, Wrapper, Text, List, AreaIcon} from './style';
 
 import {getAllCategories} from '../../redux/Categories/action';
+import {getAllDrinksByCategory} from '../../redux/Drinks/action';
 
 function Categories({navigation, dispatch, categories}) {
   useEffect(() => {
     dispatch(getAllCategories());
   }, [dispatch]);
 
-  return (
-    <Wrapper>
-      {categories.allCategories.drinks &&
-        categories.allCategories.drinks.map((value, index) => (
-          <Text key={index}>{value.strCategory}</Text>
-        ))}
+  function handleNavigationToDrinks(category) {
+    dispatch(getAllDrinksByCategory(category));
+    navigation.navigate('Drinks');
+  }
 
-      <Button onPress={() => navigation.navigate('Bebidas')} title="Bebidas" />
-    </Wrapper>
+  return (
+    <Container>
+      <Wrapper>
+        <ScrollView>
+          {categories.allCategories.drinks.map((value, index) => (
+            <List key={index.toString()}>
+              <Text>{value.strCategory}</Text>
+              <RectButton
+                onPress={() => handleNavigationToDrinks(value.strCategory)}>
+                <AreaIcon>
+                  <Icon name="chevron-right" color="#fff" size={24} />
+                </AreaIcon>
+              </RectButton>
+            </List>
+          ))}
+        </ScrollView>
+      </Wrapper>
+    </Container>
   );
 }
 
-const mapStateToProps = (state) => ({categories: state.Categories});
+const mapStateToProps = (state) => ({categories: state.categories});
 export default connect(mapStateToProps)(Categories);

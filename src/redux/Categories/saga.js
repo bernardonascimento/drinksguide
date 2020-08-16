@@ -7,8 +7,6 @@ function* getAllCategories() {
   try {
     let params = {c: 'list'};
     const response = yield call(api.get, 'list.php', {params});
-
-    console.log(response);
     let payload = response.data;
 
     yield put({type: GETCATEGORY, payload});
@@ -17,6 +15,6 @@ function* getAllCategories() {
   }
 }
 
-export default function* AllotmentSaga() {
+export default function* CategorySaga() {
   yield takeEvery(GETCATEGORYSAGA, getAllCategories);
 }
