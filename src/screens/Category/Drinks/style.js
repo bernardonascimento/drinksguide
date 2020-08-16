@@ -25,6 +25,11 @@ export const ListItem = styled.View`
   align-items: center;
 `;
 
+export const ItemWrapper = styled.View`
+  flex: 1;
+  align-self: stretch;
+`;
+
 export const Thumb = styled.Image`
   width: 100%;
   height: 180px;

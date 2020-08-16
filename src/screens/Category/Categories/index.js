@@ -7,8 +7,7 @@ import {RectButton} from 'react-native-gesture-handler';
 
 import {Container, Wrapper, Text, List, AreaIcon} from './style';
 
-import {getAllCategories} from '../../redux/Categories/action';
-import {getAllDrinksByCategory} from '../../redux/Drinks/action';
+import {getAllCategories} from '../../../redux/Categories/action';
 
 function Categories({navigation, dispatch, categories}) {
   useEffect(() => {
@@ -16,8 +15,7 @@ function Categories({navigation, dispatch, categories}) {
   }, [dispatch]);
 
   function handleNavigationToDrinks(category) {
-    dispatch(getAllDrinksByCategory(category));
-    navigation.navigate('Drinks');
+    navigation.navigate('Drinks', {category});
   }
 
   return (

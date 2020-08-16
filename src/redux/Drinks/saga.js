@@ -1,7 +1,14 @@
 import api from '../../utils/api';
 import {call, put, takeEvery} from 'redux-saga/effects';
 
-import {GETDRINKSBYCATEGORY, GETDRINKSBYCATEGORYSAGA} from './type';
+import {
+  GETDRINKSBYCATEGORY,
+  GETDRINKSBYCATEGORYSAGA,
+  SEARCHDRINKS,
+  SEARCHDRINKSSAGA,
+  GETDRINKBYID,
+  GETDRINKBYIDSAGA,
+} from './type';
 
 function* getAllDrinksByCategory({category}) {
   try {
@@ -21,7 +28,7 @@ function* searchDrinksByName({name}) {
     const response = yield call(api.get, 'search.php', {params});
     let payload = response.data;
 
-    yield put({type: GETDRINKSBYCATEGORY, payload});
+    yield put({type: SEARCHDRINKS, payload});
   } catch (error) {
     console.log(error);
   }
@@ -33,7 +40,7 @@ function* getDrinkByID({ID}) {
     const response = yield call(api.get, 'lookup.php', {params});
     let payload = response.data;
 
-    yield put({type: GETDRINKSBYCATEGORY, payload});
+    yield put({type: GETDRINKBYID, payload});
   } catch (error) {
     console.log(error);
   }
@@ -41,4 +48,6 @@ function* getDrinkByID({ID}) {
 
 export default function* DrinkSaga() {
   yield takeEvery(GETDRINKSBYCATEGORYSAGA, getAllDrinksByCategory);
+  yield takeEvery(SEARCHDRINKSSAGA, searchDrinksByName);
+  yield takeEvery(GETDRINKBYIDSAGA, getDrinkByID);
 }
